@@ -1,6 +1,22 @@
 package domain
+import domain.criterios.CriterioDeAprovacao
 
 class AnalisadorDeAprovacao {
+    private lateinit var escolhecriterio : CriterioDeAprovacao
+
+    fun defineCriterio(criterio: CriterioDeAprovacao) {
+        this.escolhecriterio = criterio 
+    }
+
+    fun fechaBoletim(boletim: Boletim): BoletimFechado {
+        val media
+        val aprovacao
+
+        media = escolhecriterio. media(boletim)
+        aprovacao = escolhecriterio.aprovacao(boletim)
+ 
+        return BoletimFechado(boletim.mediaEPs, boletim.mediaMiniEPs, media, aprovacao)
+    }
 
     // ---------------------------------
     //
